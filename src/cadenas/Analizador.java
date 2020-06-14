@@ -436,7 +436,8 @@ public class Analizador {
 		int fanIN=0;
 		String linea;
 		String[] lineaSplitted;
-		metodo=metodo.split(" ")[1];
+		if(metodo.split(" ").length>=2)
+			metodo=metodo.split(" ")[1];
 		for(int i=0; i<codigoCompleto.size();i++) {
 			linea=codigoCompleto.get(i).trim();
 			lineaSplitted=linea.trim().split(" ");

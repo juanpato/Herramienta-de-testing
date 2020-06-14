@@ -10,6 +10,8 @@ import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Button;
+import java.awt.Color;
+
 import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -19,12 +21,15 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.text.Style;
+import javax.swing.text.StyleConstants;
 import javax.swing.JTextArea;
+import javax.swing.UIManager;
 
 public class Interfaz {
 	private Analizador analizador;
 	private JFrame frame;
-	private JTextField textField;
+	private JTextField txtCantidadDeLineas_1;
 	private JTextField txtCaracteresTotales;
 	private JTextField txtCantidadDeLineas;
 	private JTextField txtCantidadDeCaracteres;
@@ -70,9 +75,12 @@ public class Interfaz {
 		
 		
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
+		frame.getContentPane().setForeground(new Color(0, 0, 0));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
-		this.frame.setSize(944, 614);
+		frame.setTitle("Analizador");
+		this.frame.setSize(944, 624);
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
@@ -104,8 +112,8 @@ public class Interfaz {
 		
 		
 		JTextPane txtpnTotal = new JTextPane();
+		txtpnTotal.setForeground(Color.RED);
 		txtpnTotal.setEditable(false);
-		txtpnTotal.setEnabled(false);
 		txtpnTotal.setText("  Total");
 		txtpnTotal.setBounds(428, 11, 55, 20);
 		frame.getContentPane().add(txtpnTotal);
@@ -133,18 +141,19 @@ public class Interfaz {
 			
 			
 		});
-		button.setBounds(160, 11, 109, 22);
+		button.setBounds(160, 11, 115, 22);
 		frame.getContentPane().add(button);
 		
 		
 		
-		textField = new JTextField();
-		textField.setEnabled(false);
-		textField.setEditable(false);
-		textField.setText("Cantida de lineas totales");
-		textField.setColumns(10);
-		textField.setBounds(221, 42, 197, 20);
-		frame.getContentPane().add(textField);
+		txtCantidadDeLineas_1 = new JTextField();
+		txtCantidadDeLineas_1.setEditable(false);
+		txtCantidadDeLineas_1.setBackground(Color.WHITE);
+		txtCantidadDeLineas_1.setForeground(Color.BLACK);
+		txtCantidadDeLineas_1.setText("Cantidad de lineas totales");
+		txtCantidadDeLineas_1.setColumns(10);
+		txtCantidadDeLineas_1.setBounds(221, 42, 197, 20);
+		frame.getContentPane().add(txtCantidadDeLineas_1);
 		
 		JTextPane lineasTotalesTxt = new JTextPane();
 		lineasTotalesTxt.setEditable(false);
@@ -177,6 +186,7 @@ public class Interfaz {
 		frame.getContentPane().add(complejidadCiclomaticaTxt);
 		
 		JTextPane fanInTxt = new JTextPane();
+		
 		fanInTxt.setEditable(false);
 		fanInTxt.setBounds(428, 228, 55, 20);
 		frame.getContentPane().add(fanInTxt);
@@ -187,64 +197,64 @@ public class Interfaz {
 		frame.getContentPane().add(fanOutTxt);
 		
 		txtCaracteresTotales = new JTextField();
+		txtCaracteresTotales.setBackground(Color.WHITE);
 		txtCaracteresTotales.setText("Cantidad de lineas comentadas");
-		txtCaracteresTotales.setEnabled(false);
 		txtCaracteresTotales.setEditable(false);
 		txtCaracteresTotales.setColumns(10);
 		txtCaracteresTotales.setBounds(221, 73, 197, 20);
 		frame.getContentPane().add(txtCaracteresTotales);
 		
 		txtCantidadDeLineas = new JTextField();
+		txtCantidadDeLineas.setBackground(Color.WHITE);
 		txtCantidadDeLineas.setText("Cantidad de lineas de codigo");
-		txtCantidadDeLineas.setEnabled(false);
 		txtCantidadDeLineas.setEditable(false);
 		txtCantidadDeLineas.setColumns(10);
 		txtCantidadDeLineas.setBounds(221, 104, 197, 20);
 		frame.getContentPane().add(txtCantidadDeLineas);
 		
 		txtCantidadDeCaracteres = new JTextField();
+		txtCantidadDeCaracteres.setBackground(Color.WHITE);
 		txtCantidadDeCaracteres.setText("Cantidad de lineas en blanco");
-		txtCantidadDeCaracteres.setEnabled(false);
 		txtCantidadDeCaracteres.setEditable(false);
 		txtCantidadDeCaracteres.setColumns(10);
 		txtCantidadDeCaracteres.setBounds(221, 135, 197, 20);
 		frame.getContentPane().add(txtCantidadDeCaracteres);
 		
 		txtPorcentajeDeComentarios = new JTextField();
+		txtPorcentajeDeComentarios.setBackground(Color.WHITE);
 		txtPorcentajeDeComentarios.setText("Porcentaje de comentarios %");
-		txtPorcentajeDeComentarios.setEnabled(false);
 		txtPorcentajeDeComentarios.setEditable(false);
 		txtPorcentajeDeComentarios.setColumns(10);
 		txtPorcentajeDeComentarios.setBounds(221, 166, 197, 20);
 		frame.getContentPane().add(txtPorcentajeDeComentarios);
 		
 		txtComplejidadCiclomatica = new JTextField();
+		txtComplejidadCiclomatica.setBackground(Color.WHITE);
 		txtComplejidadCiclomatica.setText("Complejidad Ciclomatica");
-		txtComplejidadCiclomatica.setEnabled(false);
 		txtComplejidadCiclomatica.setEditable(false);
 		txtComplejidadCiclomatica.setColumns(10);
 		txtComplejidadCiclomatica.setBounds(221, 197, 197, 20);
 		frame.getContentPane().add(txtComplejidadCiclomatica);
 		
 		txtFanIn = new JTextField();
+		txtFanIn.setBackground(Color.WHITE);
 		txtFanIn.setText("Fan in");
-		txtFanIn.setEnabled(false);
 		txtFanIn.setEditable(false);
 		txtFanIn.setColumns(10);
 		txtFanIn.setBounds(221, 228, 197, 20);
 		frame.getContentPane().add(txtFanIn);
 		
 		txtFanOut = new JTextField();
+		txtFanOut.setBackground(Color.WHITE);
 		txtFanOut.setText("Fan out");
-		txtFanOut.setEnabled(false);
 		txtFanOut.setEditable(false);
 		txtFanOut.setColumns(10);
 		txtFanOut.setBounds(221, 259, 197, 20);
 		frame.getContentPane().add(txtFanOut);
 		
 		txtHalsteadLongitud = new JTextField();
+		txtHalsteadLongitud.setBackground(Color.WHITE);
 		txtHalsteadLongitud.setText("Halstead - Longitud");
-		txtHalsteadLongitud.setEnabled(false);
 		txtHalsteadLongitud.setEditable(false);
 		txtHalsteadLongitud.setColumns(10);
 		txtHalsteadLongitud.setBounds(221, 290, 197, 20);
@@ -256,8 +266,8 @@ public class Interfaz {
 		frame.getContentPane().add(longitudTxt);
 		
 		txtHalsteadVolumen = new JTextField();
+		txtHalsteadVolumen.setBackground(Color.WHITE);
 		txtHalsteadVolumen.setText("Halstead - Volumen");
-		txtHalsteadVolumen.setEnabled(false);
 		txtHalsteadVolumen.setEditable(false);
 		txtHalsteadVolumen.setColumns(10);
 		txtHalsteadVolumen.setBounds(221, 321, 197, 20);
@@ -269,8 +279,8 @@ public class Interfaz {
 		frame.getContentPane().add(volumenTxt);
 		
 		txtHalsteadEsfuerzo = new JTextField();
+		txtHalsteadEsfuerzo.setBackground(Color.WHITE);
 		txtHalsteadEsfuerzo.setText("Halstead - Esfuerzo");
-		txtHalsteadEsfuerzo.setEnabled(false);
 		txtHalsteadEsfuerzo.setEditable(false);
 		txtHalsteadEsfuerzo.setColumns(10);
 		txtHalsteadEsfuerzo.setBounds(221, 349, 197, 20);
@@ -282,7 +292,7 @@ public class Interfaz {
 		frame.getContentPane().add(esfuerzoTxt);
 		
 		txtSeleccionarMetodo = new JTextField();
-		txtSeleccionarMetodo.setEnabled(false);
+		txtSeleccionarMetodo.setForeground(Color.RED);
 		txtSeleccionarMetodo.setEditable(false);
 		txtSeleccionarMetodo.setText("Seleccionar Metodo:");
 		txtSeleccionarMetodo.setToolTipText("");
@@ -364,8 +374,9 @@ public class Interfaz {
 		
 		
 		txtCodigo = new JTextField();
+		txtCodigo.setForeground(Color.BLUE);
+		txtCodigo.setBackground(Color.WHITE);
 		txtCodigo.setEditable(false);
-		txtCodigo.setEnabled(false);
 		txtCodigo.setText("Codigo:");
 		txtCodigo.setBounds(493, 11, 86, 20);
 		frame.getContentPane().add(txtCodigo);
