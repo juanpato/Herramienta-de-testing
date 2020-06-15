@@ -48,7 +48,7 @@ class bdatoa
 		final Pattern nombre = Pattern.compile("^[a-zA-ZА-За-з,' ]+$");
 		final Pattern numerico = Pattern.compile("^[0-9]+$");
 		
-		datopac=new DataOutputStream (new FileOutputStream("C:\\Users\\Matias\\Desktop\\datospac.txt"));//abre el archivo datos de pacientes
+		datopac=new DataOutputStream (new FileOutputStream("C\\datopac.txt"));//abre el archivo datos de pacientes
 		try
 		{
 
