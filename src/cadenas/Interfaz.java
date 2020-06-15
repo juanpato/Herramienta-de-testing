@@ -25,6 +25,7 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
+import javax.swing.ScrollPaneConstants;
 
 public class Interfaz {
 	private Analizador analizador;
@@ -148,7 +149,7 @@ public class Interfaz {
 		
 		txtCantidadDeLineas_1 = new JTextField();
 		txtCantidadDeLineas_1.setEditable(false);
-		txtCantidadDeLineas_1.setBackground(Color.WHITE);
+		txtCantidadDeLineas_1.setBackground(Color.LIGHT_GRAY);
 		txtCantidadDeLineas_1.setForeground(Color.BLACK);
 		txtCantidadDeLineas_1.setText("Cantidad de lineas totales");
 		txtCantidadDeLineas_1.setColumns(10);
@@ -197,7 +198,7 @@ public class Interfaz {
 		frame.getContentPane().add(fanOutTxt);
 		
 		txtCaracteresTotales = new JTextField();
-		txtCaracteresTotales.setBackground(Color.WHITE);
+		txtCaracteresTotales.setBackground(Color.LIGHT_GRAY);
 		txtCaracteresTotales.setText("Cantidad de lineas comentadas");
 		txtCaracteresTotales.setEditable(false);
 		txtCaracteresTotales.setColumns(10);
@@ -205,7 +206,7 @@ public class Interfaz {
 		frame.getContentPane().add(txtCaracteresTotales);
 		
 		txtCantidadDeLineas = new JTextField();
-		txtCantidadDeLineas.setBackground(Color.WHITE);
+		txtCantidadDeLineas.setBackground(Color.LIGHT_GRAY);
 		txtCantidadDeLineas.setText("Cantidad de lineas de codigo");
 		txtCantidadDeLineas.setEditable(false);
 		txtCantidadDeLineas.setColumns(10);
@@ -213,7 +214,7 @@ public class Interfaz {
 		frame.getContentPane().add(txtCantidadDeLineas);
 		
 		txtCantidadDeCaracteres = new JTextField();
-		txtCantidadDeCaracteres.setBackground(Color.WHITE);
+		txtCantidadDeCaracteres.setBackground(Color.LIGHT_GRAY);
 		txtCantidadDeCaracteres.setText("Cantidad de lineas en blanco");
 		txtCantidadDeCaracteres.setEditable(false);
 		txtCantidadDeCaracteres.setColumns(10);
@@ -221,7 +222,7 @@ public class Interfaz {
 		frame.getContentPane().add(txtCantidadDeCaracteres);
 		
 		txtPorcentajeDeComentarios = new JTextField();
-		txtPorcentajeDeComentarios.setBackground(Color.WHITE);
+		txtPorcentajeDeComentarios.setBackground(Color.LIGHT_GRAY);
 		txtPorcentajeDeComentarios.setText("Porcentaje de comentarios %");
 		txtPorcentajeDeComentarios.setEditable(false);
 		txtPorcentajeDeComentarios.setColumns(10);
@@ -229,7 +230,7 @@ public class Interfaz {
 		frame.getContentPane().add(txtPorcentajeDeComentarios);
 		
 		txtComplejidadCiclomatica = new JTextField();
-		txtComplejidadCiclomatica.setBackground(Color.WHITE);
+		txtComplejidadCiclomatica.setBackground(Color.LIGHT_GRAY);
 		txtComplejidadCiclomatica.setText("Complejidad Ciclomatica");
 		txtComplejidadCiclomatica.setEditable(false);
 		txtComplejidadCiclomatica.setColumns(10);
@@ -237,7 +238,7 @@ public class Interfaz {
 		frame.getContentPane().add(txtComplejidadCiclomatica);
 		
 		txtFanIn = new JTextField();
-		txtFanIn.setBackground(Color.WHITE);
+		txtFanIn.setBackground(Color.LIGHT_GRAY);
 		txtFanIn.setText("Fan in");
 		txtFanIn.setEditable(false);
 		txtFanIn.setColumns(10);
@@ -245,7 +246,7 @@ public class Interfaz {
 		frame.getContentPane().add(txtFanIn);
 		
 		txtFanOut = new JTextField();
-		txtFanOut.setBackground(Color.WHITE);
+		txtFanOut.setBackground(Color.LIGHT_GRAY);
 		txtFanOut.setText("Fan out");
 		txtFanOut.setEditable(false);
 		txtFanOut.setColumns(10);
@@ -253,7 +254,7 @@ public class Interfaz {
 		frame.getContentPane().add(txtFanOut);
 		
 		txtHalsteadLongitud = new JTextField();
-		txtHalsteadLongitud.setBackground(Color.WHITE);
+		txtHalsteadLongitud.setBackground(Color.LIGHT_GRAY);
 		txtHalsteadLongitud.setText("Halstead - Longitud");
 		txtHalsteadLongitud.setEditable(false);
 		txtHalsteadLongitud.setColumns(10);
@@ -266,7 +267,7 @@ public class Interfaz {
 		frame.getContentPane().add(longitudTxt);
 		
 		txtHalsteadVolumen = new JTextField();
-		txtHalsteadVolumen.setBackground(Color.WHITE);
+		txtHalsteadVolumen.setBackground(Color.LIGHT_GRAY);
 		txtHalsteadVolumen.setText("Halstead - Volumen");
 		txtHalsteadVolumen.setEditable(false);
 		txtHalsteadVolumen.setColumns(10);
@@ -279,7 +280,7 @@ public class Interfaz {
 		frame.getContentPane().add(volumenTxt);
 		
 		txtHalsteadEsfuerzo = new JTextField();
-		txtHalsteadEsfuerzo.setBackground(Color.WHITE);
+		txtHalsteadEsfuerzo.setBackground(Color.LIGHT_GRAY);
 		txtHalsteadEsfuerzo.setText("Halstead - Esfuerzo");
 		txtHalsteadEsfuerzo.setEditable(false);
 		txtHalsteadEsfuerzo.setColumns(10);
@@ -312,6 +313,19 @@ public class Interfaz {
 		
 		JTextArea codigoTextArea = new JTextArea();
 		scrollPaneCodigo.setViewportView(codigoTextArea);
+		
+		JPanel panelComentarios = new JPanel();
+		panelComentarios.setBounds(221, 398, 262, 176);
+		frame.getContentPane().add(panelComentarios);
+		panelComentarios.setLayout(null);
+		
+		JScrollPane scrollComentarios = new JScrollPane();
+		scrollComentarios.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollComentarios.setBounds(0, 0, 262, 176);
+		panelComentarios.add(scrollComentarios);
+		
+		JTextArea comentariosTextArea = new JTextArea();
+		scrollComentarios.setViewportView(comentariosTextArea);
 		
 		btnTestear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -359,11 +373,19 @@ public class Interfaz {
 					int fanOUT = analizador.fanOut(metodoCompleto);
 					fanOutTxt.setText(String.valueOf(fanOUT));
 					DecimalFormat numberFormat = new DecimalFormat("#.00");
-					porcentajeComentariosTxt.setText(numberFormat.format(analizador.getProcentajeComentarios()));
+					double porcentaje = analizador.getProcentajeComentarios();
+					porcentajeComentariosTxt.setText(numberFormat.format(porcentaje));
 					analizador.halstead(metodo);
 					esfuerzoTxt.setText(numberFormat.format(analizador.getEsfuerzo()));
 					longitudTxt.setText(String.valueOf(analizador.getLongitud()));
 					volumenTxt.setText(numberFormat.format(analizador.getVolumen()));
+					
+					
+					comentariosTextArea.setText("");
+					if(porcentaje<10)
+						comentariosTextArea.setText("El porcentaje de comentarios en este metodo \nes menor al 10% con respecto a la cantidad \nde lineas de codigo");
+						
+						
 				}
 				
 			}
@@ -381,6 +403,11 @@ public class Interfaz {
 		txtCodigo.setBounds(493, 11, 86, 20);
 		frame.getContentPane().add(txtCodigo);
 		txtCodigo.setColumns(10);
+		
+		
+		
+		
+		
 		
 		list.addMouseListener(new MouseAdapter() {
 			@Override
