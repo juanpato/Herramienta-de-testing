@@ -380,14 +380,23 @@ public class Interfaz {
 					longitudTxt.setText(String.valueOf(analizador.getLongitud()));
 					volumenTxt.setText(numberFormat.format(analizador.getVolumen()));
 					
+					String metodoSplit[] = metodo.split(" ");
 					
 					comentariosTextArea.setText("");
 					if(porcentaje<10)
-						comentariosTextArea.setText("El porcentaje de comentarios en este metodo \nes menor al 10% con respecto a la cantidad \nde lineas de codigo");
-						
-						
+						comentariosTextArea.append("El porcentaje de comentarios en este metodo \n"
+								+ "es menor al 10% con respecto a la cantidad \n"
+								+ "de lineas de codigo, se recomienda un\n"
+								+ "minimo de 10%\n\n");
+					if(fanIN==0 && !metodoSplit[1].equals("main"))
+						comentariosTextArea.append("El FanIn recomendado es de al menos 1, este \n"
+								+ "metodo no se esta utilizando dentro del codigo\n\n");
+					if(complejidad>10)
+						comentariosTextArea.append("La complejidad ciclomatica de este metodo \n"
+								+ " es muy alta, se recomienda modularizar \n"
+								+ " el metodo\n\n");
 				}
-				
+		
 			}
 		});
 		btnSeleccionarMetodo.setBounds(50, 259, 104, 23);
