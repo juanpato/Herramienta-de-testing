@@ -48,6 +48,7 @@ class bdatoa
 		final Pattern nombre = Pattern.compile("^[a-zA-Zá-úÁ-Ú,' ]+$");
 		final Pattern numerico = Pattern.compile("^[0-9]+$");
 		
+		/* Se abre el archivo a analizar */
 		datopac=new DataOutputStream (new FileOutputStream("C\\datopac.txt"));//abre el archivo datos de pacientes
 		try
 		{
@@ -58,27 +59,57 @@ class bdatoa
 				ps("   ..............................................."+"\n");
 				ps("   :-:  - D A T O S  D E L  P A C I E N T E -  :-:"+"\n");
 				ps("   :-:.........................................:-:"+"\n");
+				ps("   :-:    para recibir ayuda escriba --help    :-:"+"\n");
+				ps("   :-:.........................................:-:"+"\n");
 
-				ps("Digite el codigo del paciente: ");
-				codpac=LeerCadena();
+				/* Se lee el codigo de paciente */
+				ps("Digite el codigo del paciente: (o ingrese --help para recibir ayuda)\n");
+				do {
+					codpac=LeerCadena();
+					/* Si necesita ayuda sobre lo que se puede ingresar se la proporciona con el comando --help*/
+					if(codpac.equals("--help")) {
+						ps("El codigo paciente debe ser un número entero mayor a 0.\n");
+						ps("Digite el codigo del paciente: (o ingrese --help para recibir ayuda)\n");
+					}
+				}while(codpac.equals("--help"));
 				
+				/* Se testea contra la regexp numerica */
+				/* para ver si es válido el ingreso */
 			    if (!numerico.matcher(codpac).matches()) {
-			        throw new IllegalArgumentException("El codigo paciente debe ser numérico");
+			        throw new IllegalArgumentException("El codigo paciente debe ser numérico\n");
 			    }
 				
-				ps("Digite el nombre del paciente: ");
-				nompac=LeerCadena();
+			    /* Se pide el ingreso del nombre del paciente */
+				ps("Digite el nombre del paciente: (o ingrese --help para recibir ayuda)\n");
+				//nompac=LeerCadena();
+				
+				do {
+					nompac=LeerCadena();
+					/* Si necesita ayuda sobre lo que se puede ingresar se la proporciona con el comando --help*/
+					if(nompac.equals("--help")) {
+						ps("El nombre del paciente solo puede contener letras y espacios.\n");
+						ps("Digite el nombre del paciente: (o ingrese --help para recibir ayuda)\n");
+					}
+				}while(nompac.equals("--help"));
 
+				/* Se testea contra la regexp de nombre, que chequea que contenga solo letras, espacios o coma*/
+				/* para ver si es válido el ingreso */
 			    if (!nombre.matcher(nompac).matches()) {
-			        throw new IllegalArgumentException("El nombre debe contener solo letras");
+			        throw new IllegalArgumentException("El nombre debe contener solo letras\n");
 			    }
+			    
+			    /* Se chequea si tiene entre 3 y 30 caracteres el nombre*/
+				/* para ver si es válido el ingreso */
 			    if(nompac.length() < 3 || nompac.length() > 30) {
-			    	throw new IllegalArgumentException("El nombre debe tener entre 3 y 30 caracteres");
+			    	throw new IllegalArgumentException("El nombre debe tener entre 3 y 30 caracteres\n");
 			    }
 				
+			    /* Se escribe el codigo de paciente en el archivo*/
 			    datopac.writeUTF(codpac);
-			    datopac.writeUTF(nompac);//escribo el nompac en el archivo datos paciente
+			    /* Se escriben el nombre del paciente en el archivo*/
+			    datopac.writeUTF(nompac);
 
+			    /* Se pregunta si se desea seguir ingresando pacientes*/
 				ps("Desea ingresar otro paciente? S/N"+"\n");
 
 				op=LeerCadena();
